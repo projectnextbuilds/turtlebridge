@@ -1,5 +1,60 @@
 # TurtleBridge
 
-TurtleBridge is an early-stage, open-source macOS controller research project.
+[![CI](https://github.com/projectnextbuilds/turtlebridge/actions/workflows/ci.yml/badge.svg)](https://github.com/projectnextbuilds/turtlebridge/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The Phase 1 foundation is being prepared. No hardware or software compatibility has been verified yet.
+TurtleBridge is an early-stage, open-source macOS project exploring how wired USB game controllers can be inspected, tested, and—where technically possible—made useful in games and other controller-aware software.
+
+> [!IMPORTANT]
+> TurtleBridge does **not** currently provide controller compatibility or system-wide gamepad support. Hardware support will be listed only after repeatable tests on real devices and macOS versions.
+
+## Current status
+
+Phase 1 establishes a small, verifiable foundation:
+
+- a native SwiftUI application scaffold;
+- a testable model for displaying diagnostic state;
+- contributor, security, and testing guidance;
+- GitHub issue templates and continuous integration; and
+- a roadmap that puts USB/HID discovery ahead of input mapping or compatibility claims.
+
+The first physical research target is the wired Turtle Beach Rematch Core controller. That is a test target, not a compatibility statement.
+
+## Build locally
+
+You need a Mac with a Swift 6 toolchain (normally installed with Xcode).
+
+```sh
+git clone https://github.com/projectnextbuilds/turtlebridge.git
+cd turtlebridge
+swift build
+swift test
+swift run TurtleBridge
+```
+
+The current app intentionally shows a “Not connected” placeholder. It does not yet open, read from, or modify a USB/HID device.
+
+## Project direction
+
+Development follows evidence-first milestones:
+
+1. **Foundation and USB diagnostics** — identify interfaces and collect safe, reproducible observations.
+2. **Controller input tester** — display verified buttons, sticks, triggers, and connection state.
+3. **Virtual controller feasibility** — test current macOS options before selecting an architecture.
+4. **Compatibility and release** — publish only device/software combinations that have passed documented tests.
+
+See the [roadmap](docs/ROADMAP.md), [architecture notes](docs/ARCHITECTURE.md), and [testing guide](docs/TESTING.md) for the boundaries behind those stages.
+
+## Contributing
+
+Contributions are welcome, especially reproducible USB/HID observations, fixture-based tests, documentation corrections, and accessibility improvements. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and use the hardware test issue form for device results.
+
+Please do not report a device as supported based only on USB enumeration or a single successful session. Remove serial numbers and other machine-specific identifiers from logs before sharing them.
+
+## Security
+
+Do not publish sensitive device or system information in an issue. See [SECURITY.md](SECURITY.md) for private reporting guidance.
+
+## License
+
+TurtleBridge is available under the [MIT License](LICENSE).

@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a reproducible problem in TurtleBridge.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Please remove serial numbers, usernames, local paths, and other sensitive data from logs.
+  - type: input
+    id: version
+    attributes:
+      label: TurtleBridge version or commit
+      placeholder: Commit SHA or release
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Mac and macOS
+      placeholder: Apple silicon Mac, macOS version
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the smallest repeatable sequence.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed result
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Sanitized diagnostics
+      description: Optional. Remove all unique or personal identifiers.
+      render: shell
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed serial numbers, credentials, usernames, hostnames, and local paths.
+          required: true
