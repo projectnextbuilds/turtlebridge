@@ -33,4 +33,4 @@ Use the minimum sanitized excerpt needed to solve the problem. Treat generated f
 
 Pull requests disclose material AI assistance and identify the areas it influenced. Routine editor completion does not need a transcript. Prompts and private reasoning are not published by default; the durable record is the issue, focused diff, test evidence, limitations, review, and commit history.
 
-AI-assisted changes are held to the same—and for security-sensitive work, a higher—verification standard as manually authored changes.
+AI-assisted changes are held to the same verification standard as manually authored changes, with a higher standard for security-sensitive work.
