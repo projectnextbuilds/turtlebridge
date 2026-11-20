@@ -19,7 +19,8 @@ The real serial number must not be committed, posted, published, or provided to 
 - Processor: Apple M1
 - Memory: 8 GB
 - Storage: 256 GB SSD
-- macOS version and build: Not yet recorded
+- macOS version: Tahoe 26.6.2
+- macOS build number: Not yet recorded
 
 ## TurtleBridge baseline
 
@@ -41,7 +42,7 @@ Before publishing a test record:
 
 Record these details before the first hardware observation:
 
-- the exact macOS version and build;
+- the exact macOS build number;
 - the exact USB cable, adapter, or hub path;
 - whether the controller is connected directly or through an adapter; and
 - the TurtleBridge commit used for that observation.
