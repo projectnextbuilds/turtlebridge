@@ -8,7 +8,10 @@ This page records the sanitized baseline for the first TurtleBridge hardware inv
 - Model number: TBC-2001-75
 - Product: Rematch Core Wired Controller for Xbox
 - Connection type: Wired USB
-- Exact cable, adapter, or hub path: Not yet recorded
+- Included cable: USB-C at the controller to USB-A male at the host end
+- Adapter: UGREEN USB-A female to USB-C male (exact adapter model not recorded)
+- Host connection: Adapter connected directly to a USB-C port on the MacBook Air
+- Hub: None
 - Serial number: `E20017XXXXXXXXX` (redacted display value)
 
 The real serial number must not be committed, posted, published, or provided to an AI service.
@@ -20,7 +23,7 @@ The real serial number must not be committed, posted, published, or provided to 
 - Memory: 8 GB
 - Storage: 256 GB SSD
 - macOS version: Tahoe 26.6.2
-- macOS build number: Not yet recorded
+- macOS build number: 25G83
 
 ## TurtleBridge baseline
 
@@ -38,13 +41,12 @@ Before publishing a test record:
 3. Review all public artifacts for identifiers in titles, menus, logs, and unrelated content.
 4. Share only the minimum descriptor or log excerpt needed to reproduce an observation.
 
-## Remaining information
+## Observation requirements
 
-Record these details before the first hardware observation:
+For every hardware observation, record:
 
-- the exact macOS build number;
-- the exact USB cable, adapter, or hub path;
-- whether the controller is connected directly or through an adapter; and
-- the TurtleBridge commit used for that observation.
+- the TurtleBridge commit used;
+- whether the connection path changed from the baseline above; and
+- only the minimum sanitized descriptor or log excerpt needed to reproduce the observation.
 
 Enumeration or a successful connection is not proof that reports can be read, inputs can be interpreted, or games can use the controller.
