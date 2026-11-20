@@ -1,10 +1,14 @@
 # Contributing to TurtleBridge
 
-Thank you for helping TurtleBridge turn hardware observations into reproducible software.
+## Pre-release contribution pause
+
+TurtleBridge is public but owner-restricted until its first tagged release. External pull requests and repository access requests are not being accepted during this period. Public issues remain available for focused, sanitized feedback; submitting an issue does not create a contributor role or a promise that the proposed work will be adopted.
+
+This policy will be reviewed at the first tagged release. See [GOVERNANCE.md](GOVERNANCE.md) for the decision and access model.
 
 ## Before you start
 
-Search existing issues and open a focused issue for changes that affect architecture, dependencies, entitlements, hardware access, or compatibility claims. Small documentation corrections can go directly to a pull request.
+Search existing issues before submitting feedback. Do not begin implementation for TurtleBridge unless the owner has explicitly invited the work after the contribution pause is lifted.
 
 ## Development workflow
 
@@ -13,6 +17,8 @@ Search existing issues and open a focused issue for changes that affect architec
 3. Run `swift build` and `swift test`.
 4. Record any manual or hardware checks using the pull request template.
 5. Open a pull request and state what remains untested.
+
+This workflow currently applies to the repository owner and any explicitly authorized collaborator.
 
 ## Hardware observations
 

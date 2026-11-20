@@ -45,9 +45,15 @@ Development follows evidence-first milestones:
 
 See the [roadmap](docs/ROADMAP.md), [architecture notes](docs/ARCHITECTURE.md), and [testing guide](docs/TESTING.md) for the boundaries behind those stages.
 
+## Governance and AI use
+
+TurtleBridge is public but intentionally restricted during pre-release. The project publishes its roadmap, decisions, limitations, and verification practices while write access and pull request creation remain limited to the owner. External contributions are paused until the first tagged release; public issues remain available for structured feedback.
+
+See [GOVERNANCE.md](GOVERNANCE.md) for decision and access controls, and [AI-assisted development](docs/AI_DEVELOPMENT.md) for how AI output is reviewed, tested, disclosed, and kept from becoming evidence by assertion.
+
 ## Contributing
 
-Contributions are welcome, especially reproducible USB/HID observations, fixture-based tests, documentation corrections, and accessibility improvements. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and use the hardware test issue form for device results.
+External contributions are paused until the first tagged release. You may still use the issue forms for focused, sanitized feedback. Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting information.
 
 Please do not report a device as supported based only on USB enumeration or a single successful session. Remove serial numbers and other machine-specific identifiers from logs before sharing them.
 

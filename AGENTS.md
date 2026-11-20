@@ -14,6 +14,8 @@ TurtleBridge is an evidence-first macOS controller research project. Keep change
 - Treat input reports and device descriptors as untrusted data. Validate lengths and bounds before parsing.
 - Keep diagnostics opt-in and redact machine- or device-specific identifiers by default.
 - Add or update tests for behavior changes. Documentation-only changes do not require new tests.
+- Treat AI-generated code, tests, research, and claims as untrusted drafts. Follow `docs/AI_DEVELOPMENT.md` and disclose material assistance in the pull request.
+- Do not bypass branch protections, required checks, owner review, or the pre-release access policy in `GOVERNANCE.md`.
 
 ## Verification
 
