@@ -3,7 +3,7 @@
 [![CI](https://github.com/projectnextbuilds/turtlebridge/actions/workflows/ci.yml/badge.svg)](https://github.com/projectnextbuilds/turtlebridge/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-TurtleBridge is an early-stage, open-source macOS project exploring how wired USB game controllers can be inspected, tested, and—where technically possible—made useful in games and other controller-aware software.
+TurtleBridge is an early-stage, open-source macOS project exploring how wired USB game controllers can be inspected, tested, and, where technically possible, made useful in games and other controller-aware software.
 
 > [!IMPORTANT]
 > TurtleBridge does **not** currently provide controller compatibility or system-wide gamepad support. Hardware support will be listed only after repeatable tests on real devices and macOS versions.
@@ -19,6 +19,8 @@ Phase 1 establishes a small, verifiable foundation:
 - a roadmap that puts USB/HID discovery ahead of input mapping or compatibility claims.
 
 The first physical research target is the wired Turtle Beach Rematch Core controller. That is a test target, not a compatibility statement.
+
+The sanitized [test environment](docs/TEST_ENVIRONMENT.md) records the planned hardware baseline. It does not record a compatibility result.
 
 ## Build locally
 
@@ -38,10 +40,10 @@ The current app intentionally shows a “Not connected” placeholder. It does n
 
 Development follows evidence-first milestones:
 
-1. **Foundation and USB diagnostics** — identify interfaces and collect safe, reproducible observations.
-2. **Controller input tester** — display verified buttons, sticks, triggers, and connection state.
-3. **Virtual controller feasibility** — test current macOS options before selecting an architecture.
-4. **Compatibility and release** — publish only device/software combinations that have passed documented tests.
+1. **Foundation and USB diagnostics:** identify interfaces and collect safe, reproducible observations.
+2. **Controller input tester:** display verified buttons, sticks, triggers, and connection state.
+3. **Virtual controller feasibility:** test current macOS options before selecting an architecture.
+4. **Compatibility and release:** publish only device/software combinations that have passed documented tests.
 
 See the [roadmap](docs/ROADMAP.md), [architecture notes](docs/ARCHITECTURE.md), and [testing guide](docs/TESTING.md) for the boundaries behind those stages.
 
