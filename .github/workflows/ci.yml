@@ -24,7 +24,7 @@ concurrency:
 jobs:
   swift:
     name: Swift build and test
-    runs-on: macos-15
+    runs-on: macos-15-intel
     timeout-minutes: 10
     steps:
       - name: Check out repository
