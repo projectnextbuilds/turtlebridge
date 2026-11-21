@@ -24,6 +24,8 @@ The first physical research target is the wired Turtle Beach Rematch Core contro
 
 The sanitized [test environment](docs/TEST_ENVIRONMENT.md) records the planned hardware baseline. It does not record a compatibility result.
 
+The first [hardware observation](docs/HARDWARE_OBSERVATIONS.md) records that macOS sees the controller at the USB layer while the current game-controller HID scan finds no matching interface. This is partial enumeration evidence, not controller compatibility.
+
 ## Build locally
 
 You need a Mac with a Swift 6 toolchain (normally installed with Xcode).
