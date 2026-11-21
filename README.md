@@ -18,7 +18,9 @@ Phase 1 established a small, verifiable foundation:
 - GitHub issue templates and continuous integration; and
 - a roadmap that puts USB/HID discovery ahead of input mapping or compatibility claims.
 
-The next focused step adds an explicit, read-only USB/HID scan for game-controller interfaces. The scan displays only allowlisted, non-unique metadata. It does not request serial numbers or location identifiers, read input reports, or establish compatibility.
+TurtleBridge includes an explicit, read-only USB/HID scan for game-controller interfaces. The scan displays only allowlisted, non-unique metadata. It does not request serial numbers or location identifiers, read input reports, or establish compatibility.
+
+Optional [sanitized diagnostics](docs/DIAGNOSTICS.md) record only controlled scan events and bounded interface counts. Capture is off by default, remains in memory, and has no telemetry or upload path.
 
 The first physical research target is the wired Turtle Beach Rematch Core controller. That is a test target, not a compatibility statement.
 
@@ -38,7 +40,7 @@ swift test
 swift run TurtleBridge
 ```
 
-The app starts with a “Not connected” placeholder. The **Scan USB/HID** action uses Apple's IOKit HID APIs to enumerate matching interfaces without reading reports or modifying a device. Physical behavior on the documented controller remains unverified until a repeatable hardware test is recorded.
+The app starts with a “Not connected” placeholder. The **Scan USB/HID** action uses Apple's IOKit HID APIs to enumerate matching interfaces without reading reports or modifying a device. See [Hardware observations](docs/HARDWARE_OBSERVATIONS.md) for the exact tested result and its limits.
 
 ## Project direction
 

@@ -16,7 +16,9 @@ USB/HID discovery -> sanitized observations -> report parsing -> app presentatio
 
 The first discovery boundary uses Apple's IOKit HID APIs behind `HIDDiscovering`. It performs an explicit, read-only scan for Generic Desktop joystick, gamepad, and multi-axis controller usages. The system adapter requests only product, manufacturer, transport, vendor/product IDs, and primary usage metadata. It does not request serial numbers or location identifiers and does not read input reports.
 
-`HIDDeviceObservation` validates numeric ranges, removes control characters, bounds descriptor text, and exposes only the allowlisted fields. SwiftUI calls the boundary but does not own IOKit logic. Hardware behavior remains unverified until a repeatable test record is attached to the discovery issue.
+`HIDDeviceObservation` validates numeric ranges, removes control characters, bounds descriptor text, and exposes only the allowlisted fields. SwiftUI calls the boundary but does not own IOKit logic. Verified behavior is limited to the exact records in [Hardware observations](HARDWARE_OBSERVATIONS.md).
+
+`DiagnosticCapture` is a separate, in-memory state model. It is off by default, accepts only controlled event kinds and bounded interface counts, and retains at most 64 entries. It accepts no free-form strings, device identifiers, timestamps, raw reports, or system metadata. SwiftUI controls the explicit start and stop actions and renders selectable text, but it does not define the diagnostic format.
 
 ## Decisions deferred until evidence exists
 
