@@ -35,4 +35,6 @@ TurtleBridge scanned only Generic Desktop joystick, gamepad, and multi-axis cont
 
 This result shows that the controller reaches the Mac as a USB device through the documented cable and adapter path. It does not show that macOS exposes it as a matching HID gamepad, that input reports can be read, or that any game or controller-aware software can use it.
 
-The next investigation should inspect sanitized interface classes and usages without collecting unique identifiers or broadening the discovery match based on guesswork.
+The follow-up read-only registry inspection observed USB vendor `0x10F5`, product `0x7113`, device class `0xFF`, subclass `0x47`, and protocol `0xD0`. The class is vendor-specific. Broader checks found no matching `IOHIDDevice`, `IOHIDInterface`, HID event service, or HID user device, and Apple's Game Controller framework returned zero connected controllers.
+
+The next investigation must not guess a report layout. A separate review is required before any API establishes exclusive ownership of the USB device or accesses endpoints. No device open, capture, seize, configuration change, reset, request, endpoint access, or raw report read was attempted for this observation.
