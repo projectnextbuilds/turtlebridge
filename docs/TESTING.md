@@ -25,6 +25,8 @@ For USB/HID discovery changes:
 4. confirm the app remains responsive and that displayed metadata contains no serial number, location identifier, hostname, username, or local path; and
 5. record the exact commit and observed result in the hardware test issue.
 
+For the documented target-specific USB lookup, confirm that only the target product and allowlisted class metadata appear. The app must not display or request a serial number, location ID, registry path, unrelated USB device, hostname, username, or local path. This lookup must not open, claim, configure, reset, or read from the controller.
+
 A matching interface is an enumeration result only. It does not show that input reports can be opened or read.
 
 ## Sanitized diagnostic checks
