@@ -4,6 +4,7 @@ import TurtleBridgeKit
 struct ContentView: View {
     @State private var snapshot = ControllerSnapshot.placeholder
     @State private var observations: [HIDDeviceObservation] = []
+    @State private var diagnostics = DiagnosticCapture()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -65,6 +66,36 @@ struct ContentView: View {
             }
             .keyboardShortcut("r", modifiers: [.command])
 
+            HStack(spacing: 12) {
+                Button(diagnostics.isEnabled ? "Stop diagnostics" : "Start diagnostics") {
+                    if diagnostics.isEnabled {
+                        diagnostics.stop()
+                    } else {
+                        diagnostics.start()
+                    }
+                }
+
+                if !diagnostics.entries.isEmpty {
+                    Text("\(diagnostics.entries.count) bounded entries")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            if !diagnostics.entries.isEmpty {
+                GroupBox {
+                    ScrollView {
+                        Text(diagnostics.formattedText)
+                            .font(.caption.monospaced())
+                            .textSelection(.enabled)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .frame(minHeight: 80, maxHeight: 120)
+                } label: {
+                    Text("Sanitized diagnostics")
+                }
+            }
+
             Spacer()
 
             Text("Only allowlisted, non-unique metadata is displayed. Serial numbers and location identifiers are not requested.")
@@ -72,10 +103,11 @@ struct ContentView: View {
                 .foregroundStyle(.tertiary)
         }
         .padding(32)
-        .frame(minWidth: 560, minHeight: 360)
+        .frame(minWidth: 560, minHeight: 560)
     }
 
     private func scan() {
+        diagnostics.recordScanStarted()
         snapshot = ControllerSnapshot(
             status: .discovering,
             detail: "Scanning for game-controller HID interfaces."
@@ -83,6 +115,7 @@ struct ContentView: View {
 
         do {
             observations = try SystemHIDDiscovery().scan()
+            diagnostics.recordScanCompleted(matchingInterfaceCount: observations.count)
             if observations.isEmpty {
                 snapshot = ControllerSnapshot(
                     status: .notConnected,
@@ -100,12 +133,14 @@ struct ContentView: View {
             }
         } catch let error as HIDDiscoveryError {
             observations = []
+            diagnostics.recordScanFailed()
             snapshot = ControllerSnapshot(
                 status: .unavailable,
                 detail: "USB/HID discovery could not start (\(error))."
             )
         } catch {
             observations = []
+            diagnostics.recordScanFailed()
             snapshot = ControllerSnapshot(
                 status: .unavailable,
                 detail: "USB/HID discovery could not start."
