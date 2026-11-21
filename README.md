@@ -30,6 +30,8 @@ The sanitized [test environment](docs/TEST_ENVIRONMENT.md) records the planned h
 
 The first [hardware observation](docs/HARDWARE_OBSERVATIONS.md) records that macOS sees the controller at the USB layer while the current game-controller HID scan finds no matching interface. This is partial enumeration evidence, not controller compatibility.
 
+The [compatibility matrix](docs/COMPATIBILITY.md) tracks the tested revisions and the status of game, Steam, emulator, and cloud gaming tests.
+
 ## Build locally
 
 You need a Mac with a Swift 6 toolchain (normally installed with Xcode).
