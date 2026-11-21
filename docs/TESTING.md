@@ -27,6 +27,19 @@ For USB/HID discovery changes:
 
 A matching interface is an enumeration result only. It does not show that input reports can be opened or read.
 
+## Sanitized diagnostic checks
+
+Diagnostics are off by default. To test an opt-in session:
+
+1. select **Start diagnostics** and confirm a new in-memory capture begins;
+2. scan through the intended connect, disconnect, and reconnect sequence;
+3. select **Stop diagnostics**;
+4. confirm the output contains only the version header, sequence numbers, controlled event names, and bounded interface counts;
+5. close and reopen the app to confirm the capture was not written to disk; and
+6. follow [Sanitized diagnostics](DIAGNOSTICS.md) before sharing the minimum necessary lines.
+
+Automated tests use fake interface counts to cover appearance, disappearance, count changes, failure, disabled capture, and output bounds. CI does not require physical hardware.
+
 ## Hardware tests
 
 Use the hardware test issue form. Record:
