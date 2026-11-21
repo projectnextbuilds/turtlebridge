@@ -2,8 +2,14 @@ import SwiftUI
 import TurtleBridgeKit
 
 struct ContentView: View {
+    private static let rematchCoreTarget = USBDeviceTarget(
+        vendorID: 0x10F5,
+        productID: 0x7113
+    )
+
     @State private var snapshot = ControllerSnapshot.placeholder
     @State private var observations: [HIDDeviceObservation] = []
+    @State private var usbObservations: [USBDeviceObservation] = []
     @State private var diagnostics = DiagnosticCapture()
 
     var body: some View {
@@ -44,6 +50,18 @@ struct ContentView: View {
                     .foregroundStyle(.secondary)
                 Text("Enumeration does not prove that input reports are readable or that software can use the controller.")
                     .foregroundStyle(.secondary)
+
+                if let usbObservation = usbObservations.first {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(usbObservation.displayName)
+                            .font(.headline)
+                        Text(usbObservation.diagnosticSummary)
+                            .font(.caption.monospaced())
+                            .foregroundStyle(.secondary)
+                            .textSelection(.enabled)
+                    }
+                    .padding(.top, 4)
+                }
             }
 
             if !observations.isEmpty {
@@ -114,12 +132,21 @@ struct ContentView: View {
         )
 
         do {
+            usbObservations = try SystemUSBDiscovery(
+                target: Self.rematchCoreTarget
+            ).scan()
             observations = try SystemHIDDiscovery().scan()
             diagnostics.recordScanCompleted(matchingInterfaceCount: observations.count)
-            if observations.isEmpty {
+            if let usbObservation = usbObservations.first, observations.isEmpty {
+                snapshot = ControllerSnapshot(
+                    status: .transportObserved,
+                    deviceName: usbObservation.displayName,
+                    detail: "Target USB transport observed. No matching game-controller HID interface was observed."
+                )
+            } else if observations.isEmpty {
                 snapshot = ControllerSnapshot(
                     status: .notConnected,
-                    detail: "No matching game-controller HID interface was observed."
+                    detail: "Target USB transport and matching game-controller HID interface were not observed."
                 )
             } else {
                 let name = observations.count == 1
@@ -133,13 +160,23 @@ struct ContentView: View {
             }
         } catch let error as HIDDiscoveryError {
             observations = []
+            usbObservations = []
             diagnostics.recordScanFailed()
             snapshot = ControllerSnapshot(
                 status: .unavailable,
                 detail: "USB/HID discovery could not start (\(error))."
             )
+        } catch let error as USBDiscoveryError {
+            observations = []
+            usbObservations = []
+            diagnostics.recordScanFailed()
+            snapshot = ControllerSnapshot(
+                status: .unavailable,
+                detail: "Read-only USB discovery could not start (\(error))."
+            )
         } catch {
             observations = []
+            usbObservations = []
             diagnostics.recordScanFailed()
             snapshot = ControllerSnapshot(
                 status: .unavailable,

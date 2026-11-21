@@ -20,6 +20,8 @@ Phase 1 established a small, verifiable foundation:
 
 TurtleBridge includes an explicit, read-only USB/HID scan for game-controller interfaces. The scan displays only allowlisted, non-unique metadata. It does not request serial numbers or location identifiers, read input reports, or establish compatibility.
 
+For the documented research target, the same action also performs a target-specific USB registry lookup. It reports only allowlisted product and USB class metadata and does not open, claim, configure, reset, or read from the device.
+
 Optional [sanitized diagnostics](docs/DIAGNOSTICS.md) record only controlled scan events and bounded interface counts. Capture is off by default, remains in memory, and has no telemetry or upload path.
 
 The first physical research target is the wired Turtle Beach Rematch Core controller. That is a test target, not a compatibility statement.

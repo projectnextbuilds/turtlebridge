@@ -18,11 +18,16 @@ The first discovery boundary uses Apple's IOKit HID APIs behind `HIDDiscovering`
 
 `HIDDeviceObservation` validates numeric ranges, removes control characters, bounds descriptor text, and exposes only the allowlisted fields. SwiftUI calls the boundary but does not own IOKit logic. Verified behavior is limited to the exact records in [Hardware observations](HARDWARE_OBSERVATIONS.md).
 
+`SystemUSBDiscovery` is a separate, target-specific registry lookup for the documented controller. It reads vendor/product IDs to select the exact target, then reads product, manufacturer, and device class/subclass/protocol only for that match. It does not retain or expose unrelated device metadata, create an `IOUSBHostObject`, establish exclusive ownership, request serial or location properties, change configuration, reset hardware, access endpoints, or read reports.
+
+Any future `IOUSBHost` session requires a separate security and distribution review. Apple documents that initializing a host object establishes exclusive ownership, while device capture or seize options can terminate existing drivers. Those actions are outside the current discovery boundary.
+
 `DiagnosticCapture` is a separate, in-memory state model. It is off by default, accepts only controlled event kinds and bounded interface counts, and retains at most 64 entries. It accepts no free-form strings, device identifiers, timestamps, raw reports, or system metadata. SwiftUI controls the explicit start and stop actions and renders selectable text, but it does not define the diagnostic format.
 
 ## Decisions deferred until evidence exists
 
 - Whether the initial controller exposes a usable HID interface on current macOS.
+- Whether an exclusive USB session can be justified and tested without unsafe device-state changes.
 - Whether input reports can be read reliably across disconnects and sleep/wake cycles.
 - Whether a virtual controller can be implemented safely with current public macOS APIs and acceptable installation requirements.
 - Which games, launchers, emulators, or cloud services can consume any eventual output.

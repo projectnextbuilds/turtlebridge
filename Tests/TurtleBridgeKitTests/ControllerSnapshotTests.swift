@@ -34,4 +34,16 @@ struct ControllerSnapshotTests {
 
         #expect(snapshot.displayName == "No verified controller")
     }
+
+    @Test("USB transport status does not imply a HID interface")
+    func usbTransportStatus() {
+        let snapshot = ControllerSnapshot(
+            status: .transportObserved,
+            deviceName: "Documented USB target",
+            detail: "No matching game-controller HID interface was observed."
+        )
+
+        #expect(snapshot.status.rawValue == "USB transport observed")
+        #expect(snapshot.displayName == "Documented USB target")
+    }
 }
