@@ -10,13 +10,15 @@ TurtleBridge is an early-stage, open-source macOS project exploring how wired US
 
 ## Current status
 
-Phase 1 establishes a small, verifiable foundation:
+Phase 1 established a small, verifiable foundation:
 
 - a native SwiftUI application scaffold;
 - a testable model for displaying diagnostic state;
 - contributor, security, and testing guidance;
 - GitHub issue templates and continuous integration; and
 - a roadmap that puts USB/HID discovery ahead of input mapping or compatibility claims.
+
+The next focused step adds an explicit, read-only USB/HID scan for game-controller interfaces. The scan displays only allowlisted, non-unique metadata. It does not request serial numbers or location identifiers, read input reports, or establish compatibility.
 
 The first physical research target is the wired Turtle Beach Rematch Core controller. That is a test target, not a compatibility statement.
 
@@ -34,7 +36,7 @@ swift test
 swift run TurtleBridge
 ```
 
-The current app intentionally shows a “Not connected” placeholder. It does not yet open, read from, or modify a USB/HID device.
+The app starts with a “Not connected” placeholder. The **Scan USB/HID** action uses Apple's IOKit HID APIs to enumerate matching interfaces without reading reports or modifying a device. Physical behavior on the documented controller remains unverified until a repeatable hardware test is recorded.
 
 ## Project direction
 
