@@ -1,6 +1,7 @@
 public enum ControllerConnectionStatus: String, Equatable, Sendable {
     case notConnected = "Not connected"
     case discovering = "Discovering"
+    case transportObserved = "USB transport observed"
     case observed = "Interface observed"
     case connected = "Connected"
     case unavailable = "Unavailable"
