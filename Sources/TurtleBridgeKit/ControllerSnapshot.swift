@@ -23,7 +23,7 @@ public struct ControllerSnapshot: Equatable, Sendable {
 
     public static let placeholder = ControllerSnapshot(
         status: .notConnected,
-        detail: "USB/HID discovery is not implemented yet."
+        detail: "Select Scan USB/HID to enumerate allowlisted interface metadata."
     )
 
     public var displayName: String {
