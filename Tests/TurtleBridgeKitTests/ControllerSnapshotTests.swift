@@ -3,14 +3,14 @@ import Testing
 
 @Suite("Controller snapshot")
 struct ControllerSnapshotTests {
-    @Test("Placeholder makes the unimplemented state explicit")
+    @Test("Placeholder explains the explicit discovery action")
     func placeholderState() {
         let snapshot = ControllerSnapshot.placeholder
 
         #expect(snapshot.status == .notConnected)
         #expect(snapshot.deviceName == nil)
         #expect(snapshot.displayName == "No verified controller")
-        #expect(snapshot.detail.contains("not implemented"))
+        #expect(snapshot.detail.contains("Scan USB/HID"))
     }
 
     @Test("A non-empty observed device name is displayed")
