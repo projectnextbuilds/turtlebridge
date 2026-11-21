@@ -14,7 +14,9 @@ USB/HID discovery -> sanitized observations -> report parsing -> app presentatio
 - **Parsing** will convert known, validated report layouts into controller state. It must reject truncated or unexpected input safely.
 - **Presentation** will display diagnostics and inputs without owning USB/HID logic.
 
-The Phase 1 package contains only the presentation scaffold and a small state model. It performs no device access.
+The first discovery boundary uses Apple's IOKit HID APIs behind `HIDDiscovering`. It performs an explicit, read-only scan for Generic Desktop joystick, gamepad, and multi-axis controller usages. The system adapter requests only product, manufacturer, transport, vendor/product IDs, and primary usage metadata. It does not request serial numbers or location identifiers and does not read input reports.
+
+`HIDDeviceObservation` validates numeric ranges, removes control characters, bounds descriptor text, and exposes only the allowlisted fields. SwiftUI calls the boundary but does not own IOKit logic. Hardware behavior remains unverified until a repeatable test record is attached to the discovery issue.
 
 ## Decisions deferred until evidence exists
 
