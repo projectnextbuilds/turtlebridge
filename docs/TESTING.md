@@ -17,6 +17,16 @@ Future report parsers should use sanitized byte fixtures with happy-path, trunca
 
 For presentation changes, launch `swift run TurtleBridge` and verify the window, labels, resizing, keyboard navigation, VoiceOver descriptions, and light/dark appearances where relevant.
 
+For USB/HID discovery changes:
+
+1. launch the app with no controller attached and select **Scan USB/HID**;
+2. attach the documented controller through the recorded cable and adapter path, then scan again;
+3. disconnect, reconnect, and scan after each change;
+4. confirm the app remains responsive and that displayed metadata contains no serial number, location identifier, hostname, username, or local path; and
+5. record the exact commit and observed result in the hardware test issue.
+
+A matching interface is an enumeration result only. It does not show that input reports can be opened or read.
+
 ## Hardware tests
 
 Use the hardware test issue form. Record:
