@@ -20,7 +20,7 @@ The first discovery boundary uses Apple's IOKit HID APIs behind `HIDDiscovering`
 
 `SystemUSBDiscovery` is a separate, target-specific registry lookup for the documented controller. It reads vendor/product IDs to select the exact target, then reads product, manufacturer, and device class/subclass/protocol only for that match. It does not retain or expose unrelated device metadata, create an `IOUSBHostObject`, establish exclusive ownership, request serial or location properties, change configuration, reset hardware, access endpoints, or read reports.
 
-Any future `IOUSBHost` session requires a separate security and distribution review. Apple documents that initializing a host object establishes exclusive ownership, while device capture or seize options can terminate existing drivers. Those actions are outside the current discovery boundary.
+Initializing an `IOUSBHost` object requests exclusive ownership. Seize asks an existing owner to close. Capture terminates other clients and drivers. The [USB access review](USB_ACCESS_REVIEW.md) records the ownership implications, the cached-descriptor attempt, and the result of one default-options open on the research target.
 
 `DiagnosticCapture` is a separate, in-memory state model. It is off by default, accepts only controlled event kinds and bounded interface counts, and retains at most 64 entries. It accepts no free-form strings, device identifiers, timestamps, raw reports, or system metadata. SwiftUI controls the explicit start and stop actions and renders selectable text, but it does not define the diagnostic format.
 
