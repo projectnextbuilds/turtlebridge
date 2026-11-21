@@ -6,7 +6,7 @@ struct TurtleBridgeApp: App {
         WindowGroup {
             ContentView()
         }
-        .defaultSize(width: 680, height: 440)
+        .defaultSize(width: 680, height: 620)
         .windowResizability(.contentMinSize)
     }
 }
