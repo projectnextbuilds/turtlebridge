@@ -1,0 +1,7 @@
+# Rematch input report
+
+The TBC-2001-75 returned a 36-byte primary gamepad report on interrupt IN endpoint `0x81` after the host sent one GIP Start on `0x02`. It was the only gamepad report in a 16-second test on a 2020 M1 MacBook Air running macOS 26.6.2 (25G83), with the supplied controller cable and a UGREEN USB-A to USB-C adapter. The report arrived 0.02 seconds into sampling and its masked digital-button word was `0000`. The other transfer in the run was unclassified. [Hardware record](https://github.com/projectnextbuilds/turtlebridge/issues/4#issuecomment-7072550124)
+
+`RematchInputReport` accepts a complete 36-byte transfer with message type `0x20`, primary single-packet flags `0x00`, a nonzero sequence byte and a 32-byte payload. It returns the little-endian word at offsets 4 and 5 after clearing the reserved and keep-alive bits. Other report lengths and headers produce no state. The remaining bytes are opaque. [Microsoft gamepad input format](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gipusb/ff8092de-b56e-4bbc-8e6e-71957afa9172)
+
+The hardware receipt retained only the frame length and masked word. The test fixture reconstructs the validated header, normalizes the sequence to 1 and zero-fills the unrecorded bytes. Those zeros convey no evidence about trigger, axis or extension values. The nonzero bit pattern in the byte-order test is synthetic. A named control requires repeated, operator-confirmed transitions on this hardware.

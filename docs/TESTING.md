@@ -11,7 +11,7 @@ swift build
 swift test
 ```
 
-Future report parsers should use sanitized byte fixtures with happy-path, truncated, oversized, and unknown-value cases. CI must not require physical hardware.
+Report parsers use sanitized byte fixtures with happy-path, truncated, oversized, and unknown-value cases. The [Rematch input report](REMATCH_INPUT.md) documents the provenance of the first 36-byte fixture and what its masked word can establish. CI must not require physical hardware.
 
 ## Manual app checks
 
