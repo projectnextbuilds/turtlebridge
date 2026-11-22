@@ -44,6 +44,14 @@ Automated tests use fake interface counts to cover appearance, disappearance, co
 
 ## Hardware tests
 
+### Input viewer connection check
+
+Open **Input viewer** and choose **Watch connection** or press Command-L. The view checks for the target USB device once per second while watching. Stop watching or leave the tab to clear the displayed state.
+
+On the 2020 M1 MacBook Air running macOS 26.6.2 (25G83), the TBC-2001-75 connected through its supplied cable and UGREEN adapter appeared as **Connected** over USB. Command-L started observation and cleared the status on stop. The accessibility tree exposed both control labels and the connected status. The automated lifecycle test covers disappearance, reconnection, multiple matches and a failed scan. Physical removal and live report fields still need verification in this view.
+
+### Hardware issue records
+
 Use the hardware test issue form. Record:
 
 - Mac model and Apple/Intel architecture;
