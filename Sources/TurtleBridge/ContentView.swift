@@ -13,6 +13,14 @@ struct ContentView: View {
     @State private var diagnostics = DiagnosticCapture()
 
     var body: some View {
+        TabView {
+            diagnosticsView.tabItem { Label("Diagnostics", systemImage: "magnifyingglass") }
+            InputViewer(target: Self.rematchCoreTarget)
+                .tabItem { Label("Input viewer", systemImage: "gamecontroller") }
+        }
+    }
+
+    private var diagnosticsView: some View {
         VStack(alignment: .leading, spacing: 24) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("TurtleBridge")
