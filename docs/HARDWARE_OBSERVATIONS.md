@@ -37,4 +37,4 @@ This result shows that the controller reaches the Mac as a USB device through th
 
 The follow-up read-only registry inspection observed USB vendor `0x10F5`, product `0x7113`, device class `0xFF`, subclass `0x47`, and protocol `0xD0`. The class is vendor-specific. Broader checks found no matching `IOHIDDevice`, `IOHIDInterface`, HID event service, or HID user device, and Apple's Game Controller framework returned zero connected controllers.
 
-The next investigation must not guess a report layout. A separate review is required before any API establishes exclusive ownership of the USB device or accesses endpoints. No device open, capture, seize, configuration change, reset, request, endpoint access, or raw report read was attempted for this observation.
+This registry observation made no USB requests. Later local app tests selected configuration 1, found interfaces 0 and 1 underneath the controller, and submitted one interrupt IN read. The deadline expired without a completed transfer. [USB access review and physical records](USB_ACCESS_REVIEW.md#follow-up-on-the-connected-rematch)
